@@ -82,7 +82,7 @@ services:
     command:
       - |
         set -eu
-        ready() { a="$1"; h="$2"; u="$3"; p="$4"; i=0; while [ $i -lt 60 ]; do if mc alias set "$a" "http://$h:9000" "$u" "$p" >/dev/null 2>&1; then return 0; fi; i=$((i+1)); sleep 2; done; echo "timeout waiting for $h"; return 1; }
+        ready() { a="$$1"; h="$$2"; u="$$3"; p="$$4"; i=0; while [ $$i -lt 60 ]; do if mc alias set "$$a" "http://$$h:9000" "$$u" "$$p" >/dev/null 2>&1; then return 0; fi; i=$$((i+1)); sleep 2; done; echo "timeout waiting for $$h"; return 1; }
         ready probe-releases s3-releases "${S3_RELEASES_USER}" "${S3_RELEASES_PASSWORD}"
         ready probe-quarantine s3-quarantine "${S3_QUARANTINE_USER}" "${S3_QUARANTINE_PASSWORD}"
         ready probe-images s3-images "${S3_IMAGES_USER}" "${S3_IMAGES_PASSWORD}"
