@@ -1,15 +1,10 @@
 services:
   hello:
     image: 'nginx:alpine'
-    container_name: hello-test
-    environment:
-      FOO: ${S3_RELEASES_USER}
-    volumes: [hello-data:/data]
+    command: 'sleep 3600'
     networks: [coolify]
     restart: unless-stopped
 networks:
   coolify:
     external: true
     name: coolify
-volumes:
-  hello-data:
