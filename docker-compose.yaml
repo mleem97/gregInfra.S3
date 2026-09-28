@@ -8,7 +8,7 @@
 x-minio-service: &minio-service
   image: 'minio/minio:RELEASE.2025-09-07T16-13-09Z'
   command: 'server /data --console-address ":9001"'
-  networks: [coolify]
+  networks: [coolify, proxy]
   restart: unless-stopped
 
 services:
@@ -64,6 +64,7 @@ services:
     image: 'minio/mc:RELEASE.2025-08-13T08-35-41Z'
     depends_on: [s3-releases, s3-quarantine, s3-images, s3-scans, s3-backups, s3-docs]
     networks: [coolify]
+    networks: [coolify]
     restart: "no"
     entrypoint: ["/bin/sh", "-c"]
     command:
@@ -112,6 +113,9 @@ services:
 
 networks:
   coolify:
+    external: true
+    name: coolify
+  proxy:
     external: true
     name: coolify
 
