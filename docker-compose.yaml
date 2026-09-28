@@ -13,8 +13,8 @@ services:
     restart: unless-stopped
     container_name: s3-releases
     environment:
-      MINIO_ROOT_USER: ${S3_RELEASES_USER:?S3_RELEASES_USER is required}
-      MINIO_ROOT_PASSWORD: ${S3_RELEASES_PASSWORD:?S3_RELEASES_PASSWORD is required}
+      MINIO_ROOT_USER: ${S3_RELEASES_USER}
+      MINIO_ROOT_PASSWORD: ${S3_RELEASES_PASSWORD}
     volumes: [s3-releases-data:/data]
 
   s3-quarantine:
@@ -24,8 +24,8 @@ services:
     restart: unless-stopped
     container_name: s3-quarantine
     environment:
-      MINIO_ROOT_USER: ${S3_QUARANTINE_USER:?S3_QUARANTINE_USER is required}
-      MINIO_ROOT_PASSWORD: ${S3_QUARANTINE_PASSWORD:?S3_QUARANTINE_PASSWORD is required}
+      MINIO_ROOT_USER: ${S3_QUARANTINE_USER}
+      MINIO_ROOT_PASSWORD: ${S3_QUARANTINE_PASSWORD}
     volumes: [s3-quarantine-data:/data]
 
   s3-images:
@@ -35,8 +35,8 @@ services:
     restart: unless-stopped
     container_name: s3-images
     environment:
-      MINIO_ROOT_USER: ${S3_IMAGES_USER:?S3_IMAGES_USER is required}
-      MINIO_ROOT_PASSWORD: ${S3_IMAGES_PASSWORD:?S3_IMAGES_PASSWORD is required}
+      MINIO_ROOT_USER: ${S3_IMAGES_USER}
+      MINIO_ROOT_PASSWORD: ${S3_IMAGES_PASSWORD}
     volumes: [s3-images-data:/data]
 
   s3-scans:
@@ -46,8 +46,8 @@ services:
     restart: unless-stopped
     container_name: s3-scans
     environment:
-      MINIO_ROOT_USER: ${S3_SCANS_USER:?S3_SCANS_USER is required}
-      MINIO_ROOT_PASSWORD: ${S3_SCANS_PASSWORD:?S3_SCANS_PASSWORD is required}
+      MINIO_ROOT_USER: ${S3_SCANS_USER}
+      MINIO_ROOT_PASSWORD: ${S3_SCANS_PASSWORD}
     volumes: [s3-scans-data:/data]
 
   s3-backups:
@@ -57,8 +57,8 @@ services:
     restart: unless-stopped
     container_name: s3-backups
     environment:
-      MINIO_ROOT_USER: ${S3_BACKUPS_USER:?S3_BACKUPS_USER is required}
-      MINIO_ROOT_PASSWORD: ${S3_BACKUPS_PASSWORD:?S3_BACKUPS_PASSWORD is required}
+      MINIO_ROOT_USER: ${S3_BACKUPS_USER}
+      MINIO_ROOT_PASSWORD: ${S3_BACKUPS_PASSWORD}
     volumes: [s3-backups-data:/data]
 
   s3-docs:
@@ -68,8 +68,8 @@ services:
     restart: unless-stopped
     container_name: s3-docs
     environment:
-      MINIO_ROOT_USER: ${S3_DOCS_USER:?S3_DOCS_USER is required}
-      MINIO_ROOT_PASSWORD: ${S3_DOCS_PASSWORD:?S3_DOCS_PASSWORD is required}
+      MINIO_ROOT_USER: ${S3_DOCS_USER}
+      MINIO_ROOT_PASSWORD: ${S3_DOCS_PASSWORD}
     volumes: [s3-docs-data:/data]
 
   s3-init:
@@ -110,18 +110,18 @@ services:
         echo 'S3 buckets ready.'
         exec tail -f /dev/null
     environment:
-      S3_RELEASES_USER: ${S3_RELEASES_USER:?}
-      S3_RELEASES_PASSWORD: ${S3_RELEASES_PASSWORD:?}
-      S3_QUARANTINE_USER: ${S3_QUARANTINE_USER:?}
-      S3_QUARANTINE_PASSWORD: ${S3_QUARANTINE_PASSWORD:?}
-      S3_IMAGES_USER: ${S3_IMAGES_USER:?}
-      S3_IMAGES_PASSWORD: ${S3_IMAGES_PASSWORD:?}
-      S3_SCANS_USER: ${S3_SCANS_USER:?}
-      S3_SCANS_PASSWORD: ${S3_SCANS_PASSWORD:?}
-      S3_BACKUPS_USER: ${S3_BACKUPS_USER:?}
-      S3_BACKUPS_PASSWORD: ${S3_BACKUPS_PASSWORD:?}
-      S3_DOCS_USER: ${S3_DOCS_USER:?}
-      S3_DOCS_PASSWORD: ${S3_DOCS_PASSWORD:?}
+      S3_RELEASES_USER: ${S3_RELEASES_USER}
+      S3_RELEASES_PASSWORD: ${S3_RELEASES_PASSWORD}
+      S3_QUARANTINE_USER: ${S3_QUARANTINE_USER}
+      S3_QUARANTINE_PASSWORD: ${S3_QUARANTINE_PASSWORD}
+      S3_IMAGES_USER: ${S3_IMAGES_USER}
+      S3_IMAGES_PASSWORD: ${S3_IMAGES_PASSWORD}
+      S3_SCANS_USER: ${S3_SCANS_USER}
+      S3_SCANS_PASSWORD: ${S3_SCANS_PASSWORD}
+      S3_BACKUPS_USER: ${S3_BACKUPS_USER}
+      S3_BACKUPS_PASSWORD: ${S3_BACKUPS_PASSWORD}
+      S3_DOCS_USER: ${S3_DOCS_USER}
+      S3_DOCS_PASSWORD: ${S3_DOCS_PASSWORD}
 
 networks:
   coolify:
